@@ -28,6 +28,21 @@ export default {
 
 html,body{
   height: 100%;
-  width: 100%;
+ min-width: 1920px;
+}
+.clear:before,
+.clear:after {
+  content: "";
+  display: table;
+}
+
+.clear:after {
+  clear: both;
+  overflow: hidden;
+}
+
+.clear {
+  zoom: 1;
+  /* for ie6 & ie7 */
 }
 </style>

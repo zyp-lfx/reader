@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="main">
       <tab></tab>
-      <router-view></router-view>
+      <router-view ></router-view>
     </div>
 </template>
 
@@ -13,6 +13,9 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.main{
+  height: 100%;
+  background: #eee;
+}
 </style>
