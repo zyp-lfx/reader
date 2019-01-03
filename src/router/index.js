@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const Login = resolve => require(['@/pages/login'], resolve)
 const Home = resolve => require(['@/pages/home'], resolve)
-const Admin = resolve => require(['@/pages/home/admin'], resolve)
-const System = resolve => require(['@/pages/home/system'], resolve)
+const Admin = resolve => require(['@/pages/admin'], resolve)
+const System = resolve => require(['@/pages/system'], resolve)
+const userAdmin = resolve => require(['@/pages/userAdmin'], resolve)
 
 Vue.use(Router)
 
@@ -23,9 +24,21 @@ export default new Router({
       component: Home,
       children:[
         {
-          path: '/',
-          name: 'admin',
-          component: Admin,
+          path: '/system',
+          name: 'system',
+          component: System,
+          children: [
+              {
+                path:'/',
+                name:userAdmin,
+                component:userAdmin
+              },
+              {
+                path:'/userAdmin',
+                name:userAdmin,
+                component:userAdmin
+              }
+            ]
         },
         {
           path: '/admin',
@@ -33,9 +46,9 @@ export default new Router({
           component: Admin,
         },
         {
-          path:'/system',
-          name:'system',
-          component:System,
+          path:'/',
+          name:'admin',
+          component:Admin,
         }
       ]
     }

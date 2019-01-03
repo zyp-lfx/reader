@@ -14,8 +14,8 @@
 </script>
 
 <style scoped lang="less">
-.main{
-  height: 100%;
-  background: #eee;
-}
+  .main{
+    height: 100%;
+    background: #eee;
+  }
 </style>

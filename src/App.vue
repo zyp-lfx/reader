@@ -25,7 +25,12 @@ export default {
   margin: 0;
   padding: 0;
 }
-
+.routeTab{
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  text-decoration: none;
+}
 html,body{
   height: 100%;
  min-width: 1920px;

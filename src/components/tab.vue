@@ -39,11 +39,6 @@
       width: 100px;
       text-align: center;
     }
-    .routeTab{
-      height: 100%;
-      width: 100%;
-      display: inline-block;
-      text-decoration: none;
-    }
+
   }
 </style>
