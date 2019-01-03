@@ -73,7 +73,7 @@
       width: 220px;
     }
     .userAdmin-top{
-      padding:10px 20px;
+      padding: 20px;
       span{
         font-size: 16px;
         padding:0 10px;
