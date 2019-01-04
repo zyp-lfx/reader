@@ -35,6 +35,15 @@ html,body{
   height: 100%;
  min-width: 1920px;
 }
+.dialog{
+  position: absolute;
+  z-index: 99;
+  background: rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .clear:before,
 .clear:after {
   content: "";

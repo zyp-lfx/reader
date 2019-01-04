@@ -17,8 +17,68 @@
             <el-input    clearable placeholder="请输入内容"></el-input>
             <el-button type="primary" icon="el-icon-search">搜索</el-button>
             <el-button class="right" type="primary" icon="el-icon-plus">新增</el-button>
-            <el-button class="right" type="primary" icon="el-icon-upload">导入</el-button>
+            <el-button class="right" type="primary" icon="el-icon-upload2">导入</el-button>
+            <el-button class="right" type="primary" icon="el-icon-download">导入</el-button>
           </div>
+          <div class="table-box">
+            <el-table
+              :data="tableData"
+              border
+              style="width: 100%">
+              <el-table-column
+                prop="date"
+                label="日期"
+                sortable
+                >
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="姓名"
+                sortable
+                >
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="性别"
+              >
+              </el-table-column>
+              <el-table-column
+                prop="address"
+                label="手机">
+              </el-table-column>
+              <el-table-column
+                prop="address"
+                label="角色"
+                sortable
+              >
+              </el-table-column>
+              <el-table-column
+                label="操作">
+                <template slot-scope="scope">
+                  <el-button
+                    size="mini"
+                    type="primary"
+                    icon='el-icon-edit-outline'
+                    ></el-button>
+                  <el-button
+                    size="mini"
+                    type="primary"
+                    icon='el-icon-view'
+                  ></el-button>
+                  <el-button
+                    size="mini"
+                    type="danger" icon='el-icon-delete'
+                   ></el-button>
+
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000">
+          </el-pagination>
       </div>
     </div>
 </template>
@@ -37,7 +97,52 @@
       data(){
           return {
             state1:'',
-            restaurants:arrData
+            restaurants:arrData,
+            tableData: [{
+              date: '2016-05-02',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+              date: '2016-05-04',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1517 弄'
+            }, {
+              date: '2016-05-01',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1519 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }, {
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1516 弄'
+            }]
           }
       },
       methods:{
@@ -72,8 +177,16 @@
     .el-input{
       width: 220px;
     }
+    .el-pagination{
+      text-align: center;
+      padding-top: 20px;
+    }
+    .table-box{
+      padding: 20px;
+    }
     .userAdmin-top{
       padding: 20px;
+      border-bottom: 1px solid #d8d8d8;
       span{
         font-size: 16px;
         padding:0 10px;

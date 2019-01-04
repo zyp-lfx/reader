@@ -1,14 +1,15 @@
 <template>
   <div class="main">
+    <reg   @showreg="cShowreg" v-if="regBtn"></reg>
     <div class="content">
       <h3>WELCOME</h3>
       <div class="">
         <el-row>
           <el-col :span="5">
-            <span>用户名：</span>
+            <span>手机号：</span>
           </el-col>
           <el-col :span="19">
-            <el-input v-model="formData.username" auto-complete="off"  placeholder="请输入用户名"></el-input>
+            <el-input v-model="formData.phone" auto-complete="off"  placeholder="请输入手机号"></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -16,7 +17,7 @@
             <span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
           </el-col>
           <el-col :span="19">
-            <el-input  auto-complete="off"  placeholder="请输入密码" type="password">
+            <el-input v-model="formData.password"  auto-complete="off"  placeholder="请输入密码" type="password">
               <i slot="suffix" class="el-input__icon el-icon-view"></i>
             </el-input>
           </el-col>
@@ -24,7 +25,7 @@
         <div class="more">
           <el-checkbox v-model="holdpass">记住密码</el-checkbox>
           <span>忘记密码</span>
-          <span>注册</span>
+          <span @click="showReg">注册</span>
         </div>
         <el-button type="primary" @click="login">登录</el-button>
       </div>
@@ -33,22 +34,47 @@
 </template>
 
 <script>
+  import reg from '@/components/dialog/reg.vue'
     export default {
         name: "index",
         data(){
           return{
             holdpass:false,
             formData:{
-              username:'',
+              phone:'',
               password:'',
-            }
+            },
+            regBtn:false,
           }
+      },
+      components:{
+        reg:reg
+      },
+      created(){
+          console.log(this.$api)
+
       },
       methods:{
         login(){
           console.log('登陆成功！')
-          this.$router.push({path: 'home'})
+          this.$api.POST('/login',this.formData).then(res=>{
+            console.log(res)
+            if(res.data.code==1){
+              this.$message.success('登录成功！')
+              this.$router.push({path: 'home'})
+            }else{
+              this.$message.error(res.data.msg)
+            }
+          })
+        },
+        cShowreg(data){
+          console.log(data)
+          this.regBtn=data
+        },
+        showReg(){
+          this.regBtn=true
         }
+
       }
     }
 </script>
@@ -67,8 +93,8 @@
       position: fixed;
       top: 50%;
       left: 50%;
-      margin-top: -150px;
-      margin-left: -200px;
+      margin-top: -145px;
+      margin-left: -215px;
       border-radius: 10px;
       background: rgba(0,0,0,0.3);
       h3{
