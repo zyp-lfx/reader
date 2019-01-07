@@ -1,5 +1,6 @@
 <template>
     <div class="userAdmin">
+      <adminUser @showAdmin="cShowAdmin" v-if="adminBtn"></adminUser>
       <div class="userAdmin-content">
           <div class="userAdmin-top">
             <span>角色名称:</span>
@@ -16,7 +17,7 @@
             <span>手机号:</span>
             <el-input    clearable placeholder="请输入内容"></el-input>
             <el-button type="primary" icon="el-icon-search">搜索</el-button>
-            <el-button class="right" type="primary" icon="el-icon-plus">新增</el-button>
+            <el-button class="right" type="primary" @click="showAdd" icon="el-icon-plus">新增</el-button>
             <el-button class="right" type="primary" icon="el-icon-upload2">导入</el-button>
             <el-button class="right" type="primary" icon="el-icon-download">导入</el-button>
           </div>
@@ -33,24 +34,18 @@
               </el-table-column>
               <el-table-column
                 prop="name"
-                label="姓名"
+                label="名称"
                 sortable
                 >
               </el-table-column>
               <el-table-column
                 prop="name"
-                label="性别"
+                label="级别"
               >
               </el-table-column>
               <el-table-column
                 prop="address"
-                label="手机">
-              </el-table-column>
-              <el-table-column
-                prop="address"
-                label="角色"
-                sortable
-              >
+                label="菜单权限">
               </el-table-column>
               <el-table-column
                 label="操作">
@@ -69,7 +64,6 @@
                     size="mini"
                     type="danger" icon='el-icon-delete'
                    ></el-button>
-
                 </template>
               </el-table-column>
             </el-table>
@@ -84,7 +78,8 @@
 </template>
 
 <script>
-   const arrData= [
+  import adminUser from '@/components/dialog/adminUser.vue'
+  const arrData= [
      { "value": "系统管理员", "id": "1" },
      { "value": "角色一", "id": "2" },
      { "value": "角色二一", "id": "4" },
@@ -93,11 +88,12 @@
      { "value": "角色五", "id": "6" }
    ]
     export default {
-        name: "index",
+      name: "index",
       data(){
           return {
             state1:'',
             restaurants:arrData,
+            adminBtn:false,
             tableData: [{
               date: '2016-05-02',
               name: '王小虎',
@@ -145,7 +141,22 @@
             }]
           }
       },
+      components:{
+        adminUser:adminUser
+      },
+      created(){
+          this.$api.GET('/adminuser/byId').then(res=>{
+            console.log(res)
+          })
+      },
       methods:{
+        cShowAdmin(data){
+          console.log(data)
+          this.adminBtn=data
+        },
+        showAdd(){
+          this.adminBtn=true
+        },
         querySearch(queryString, cb) {
           var restaurants = this.restaurants;
           var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;

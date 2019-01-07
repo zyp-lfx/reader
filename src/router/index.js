@@ -5,6 +5,7 @@ const Home = resolve => require(['@/pages/home'], resolve)
 const Admin = resolve => require(['@/pages/admin'], resolve)
 const System = resolve => require(['@/pages/system'], resolve)
 const userAdmin = resolve => require(['@/pages/userAdmin'], resolve)
+const user = resolve => require(['@/pages/user'], resolve)
 
 Vue.use(Router)
 
@@ -37,7 +38,12 @@ export default new Router({
                 path:'/userAdmin',
                 name:userAdmin,
                 component:userAdmin
-              }
+              },
+            {
+              path:'/user',
+              name:user,
+              component:user
+            }
             ]
         },
         {

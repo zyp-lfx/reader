@@ -53,7 +53,6 @@
               phone:'',
               password:'',
               repassword:'',
-              createTime:'',
             },
           rules: {
             name: [
@@ -84,7 +83,6 @@
             var _this =this
             this.$refs.ruleForm.validate((valid) => {
               if (valid) {
-                this.formData.createTime=new Date().getTime()
                 console.log(this.formData)
                 _this.$api.POST('/reg',_this.formData).then(res=>{
                   console.log(res)
