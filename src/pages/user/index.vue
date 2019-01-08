@@ -26,10 +26,13 @@
           border
           style="width: 100%">
           <el-table-column
-            prop="date"
+            prop="createTime"
             label="日期"
             sortable
           >
+            <template slot-scope="rowsData">
+              <span> {{rowsData.row.createTime|timeFilter}}</span>
+            </template>
           </el-table-column>
           <el-table-column
             prop="name"
@@ -37,20 +40,24 @@
             sortable
           >
           </el-table-column>
+
           <el-table-column
-            prop="name"
-            label="性别"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="address"
+            prop="phone"
             label="手机">
           </el-table-column>
           <el-table-column
-            prop="address"
+            prop="adminId"
             label="角色"
             sortable
           >
+            <template  slot-scope="rowData">
+              <span>{{rowData.row.adminId?'rowData.adminName':'未配置'}}</span>
+              <el-button
+                size="mini"
+                type="primary"
+                icon='el-icon-edit-outline'
+              ></el-button>
+            </template>
           </el-table-column>
           <el-table-column
             label="操作">
@@ -98,56 +105,14 @@
       return {
         state1:'',
         restaurants:arrData,
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: []
       }
     },
     created(){
       this.$api.GET('/user/byId').then(res=>{
-        console.log(res)
+        if(res.data.code==1){
+          this.tableData=res.data.data.rows
+        }
       })
     },
     methods:{

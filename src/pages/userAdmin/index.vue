@@ -27,10 +27,13 @@
               border
               style="width: 100%">
               <el-table-column
-                prop="date"
-                label="日期"
+                prop="createTime"
+                label="创建日期"
                 sortable
                 >
+                <template slot-scope="rowsData">
+                 <span> {{rowsData.row.createTime|timeFilter}}</span>
+                </template>
               </el-table-column>
               <el-table-column
                 prop="name"
@@ -39,13 +42,21 @@
                 >
               </el-table-column>
               <el-table-column
-                prop="name"
+                prop="grade"
                 label="级别"
               >
               </el-table-column>
               <el-table-column
-                prop="address"
-                label="菜单权限">
+                prop="power"
+                label="菜单权限" >
+                <template  slot-scope="rowsData">
+                  <span>{{rowsData.row.power?'已配置':'未配置'}}</span>
+                  <el-button
+                    size="mini"
+                    type="primary"
+                    icon='el-icon-edit-outline'
+                  ></el-button>
+                </template>
               </el-table-column>
               <el-table-column
                 label="操作">
@@ -55,11 +66,7 @@
                     type="primary"
                     icon='el-icon-edit-outline'
                     ></el-button>
-                  <el-button
-                    size="mini"
-                    type="primary"
-                    icon='el-icon-view'
-                  ></el-button>
+
                   <el-button
                     size="mini"
                     type="danger" icon='el-icon-delete'
@@ -94,51 +101,7 @@
             state1:'',
             restaurants:arrData,
             adminBtn:false,
-            tableData: [{
-              date: '2016-05-02',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-              date: '2016-05-04',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-              date: '2016-05-01',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }, {
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1516 弄'
-            }]
+            tableData: []
           }
       },
       components:{
@@ -147,6 +110,9 @@
       created(){
           this.$api.GET('/adminuser/byId').then(res=>{
             console.log(res)
+            if(res.data.code==1){
+              this.tableData=res.data.data.rows
+            }
           })
       },
       methods:{

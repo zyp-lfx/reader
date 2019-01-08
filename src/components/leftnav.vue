@@ -3,7 +3,7 @@
     <ul>
       <li><router-link class="routeTab"  :to="{ path: '/user' }">用户管理</router-link></li>
       <li><router-link class="routeTab" :to="{ path: '/userAdmin' }">角色管理</router-link></li>
-      <li><router-link class="routeTab" :to="{ path: '/' }">菜单管理</router-link></li>
+      <li><router-link class="routeTab" :to="{ path: '/menu' }">菜单管理</router-link></li>
     </ul>
   </div>
 </template>
