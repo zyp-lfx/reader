@@ -24,6 +24,14 @@
   /*color: #2c3e50;*/
   /*margin-top: 60px;*/
 }
+table {
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+}
 *{
   margin: 0;
   padding: 0;

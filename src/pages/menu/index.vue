@@ -13,8 +13,15 @@
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
       </div>
       <div class="table-box">
-        <tree-table>
-          <treeTableColumn></treeTableColumn>
+        <tree-table
+          :data="tableData"
+        >
+          <template slot-scope="rowData">
+            <treeTableColumn :rowData="rowData.row" prop="name" label="菜单名称"></treeTableColumn>
+            <treeTableColumn :rowData="rowData.row" prop="address" label="菜单路径"></treeTableColumn>
+            <treeTableColumn :rowData="rowData.row" prop="date"  label="创建时间"></treeTableColumn>
+            <treeTableColumn :rowData="rowData.row" label="操作"></treeTableColumn>
+          </template>
         </tree-table>
       </div>
 
@@ -35,11 +42,21 @@
             address: '上海市普陀区金沙江路 1518 弄',
             children:[
               { date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
+                name: '王小虎1',
+                address: '上海市普陀区金沙江路 1518 弄',
+                children:[
+                  { date: '2016-05-02',
+                    name: '王小虎1',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                  },
+                  { date: '2016-05-02',
+                    name: '王小虎2',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                  }
+                ]
               },
               { date: '2016-05-02',
-                name: '王小虎',
+                name: '王小虎2',
                 address: '上海市普陀区金沙江路 1518 弄'
               }
             ]
@@ -56,6 +73,11 @@
             name: '王小虎',
             address: '上海市普陀区金沙江路 1516 弄'
           }]
+        }
+      },
+      methods:{
+        showlog(){
+          console.log(1111111111111111111)
         }
       }
     }
