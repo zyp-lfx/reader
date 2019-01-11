@@ -1,7 +1,7 @@
 <template >
     <div class=" box-cell">
       <slot>
-        <div class="node-box" :style="{'paddingLeft':1*20+'px'}">{{rowData[prop]}}</div>
+        <div class="node-box" :style="{'paddingLeft':rowData._level*20+'px'}">{{rowData[prop]}}</div>
       </slot>
     </div>
 </template>

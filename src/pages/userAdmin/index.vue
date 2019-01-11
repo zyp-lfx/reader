@@ -55,6 +55,7 @@
                     size="mini"
                     type="primary"
                     icon='el-icon-edit-outline'
+                    @click="showMenu(rowsData.row._id)"
                   ></el-button>
                 </template>
               </el-table-column>
@@ -119,6 +120,14 @@
         cShowAdmin(data){
           console.log(data)
           this.adminBtn=data
+        },
+        showMenu(data){
+          this.$api.GET('/menu/getMenuById',{id:data}).then(res=>{
+            console.log(res)
+            if(res.data.code==1){
+              // this.tableData=res.data.data
+            }
+          })
         },
         showAdd(){
           this.adminBtn=true

@@ -29,12 +29,8 @@ export default new Router({
           path: '/system',
           name: 'system',
           component: System,
+          redirect: '/user',
           children: [
-              {
-                path:'/',
-                name:userAdmin,
-                component:userAdmin
-              },
               {
                 path:'/userAdmin',
                 name:userAdmin,
