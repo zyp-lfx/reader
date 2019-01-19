@@ -34,6 +34,8 @@
 </template>
 
 <script>
+  import {mapState,mapGetters,mapActions} from 'vuex'; //先要引入
+
   import reg from '@/components/dialog/reg.vue'
     export default {
         name: "index",
@@ -46,6 +48,12 @@
             },
             regBtn:false,
           }
+      },
+      computed: {
+        ...mapState({  //这里的...是超引用，ES6的语法，意思是state里有多少属性值我可以在这里放多少属性值
+          ROUTER_MENU: state => state.ROUTER.routerMenu //注意这些与上面的区别就是state.footerStatus,
+          //里面定义的showFooter是指footerStatus.js里state的showFooter
+        })
       },
       components:{
         reg:reg

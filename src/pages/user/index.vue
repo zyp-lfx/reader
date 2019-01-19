@@ -1,5 +1,6 @@
 <template>
   <div class="userAdmin">
+    <userAddAdmin :userId="selectUserId" v-if="showAdminBtn"></userAddAdmin>
     <div class="userAdmin-content">
       <div class="userAdmin-top">
         <span>角色名称:</span>
@@ -56,6 +57,7 @@
                 size="mini"
                 type="primary"
                 icon='el-icon-edit-outline'
+                @click="showAdmin(rowData.row._id)"
               ></el-button>
             </template>
           </el-table-column>
@@ -91,6 +93,7 @@
 </template>
 
 <script>
+  import  userAddAdmin from '@/components/dialog/userAddAdmin'
   const arrData= [
     { "value": "系统管理员", "id": "1" },
     { "value": "角色一", "id": "2" },
@@ -105,8 +108,13 @@
       return {
         state1:'',
         restaurants:arrData,
-        tableData: []
+        tableData: [],
+        selectUserId:'',
+        showAdminBtn:false
       }
+    },
+    components:{
+      userAddAdmin:userAddAdmin
     },
     created(){
       this.$api.GET('/user/byId').then(res=>{
@@ -116,6 +124,11 @@
       })
     },
     methods:{
+      showAdmin(id){
+        console.log(id)
+        this.selectUserId=id;
+        this.showAdminBtn=true
+      },
       querySearch(queryString, cb) {
         var restaurants = this.restaurants;
         var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;

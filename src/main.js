@@ -9,8 +9,10 @@ import echarts from 'echarts'
 import api from '@/api';
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import store from './store'//引入store
 Vue.prototype.$echarts = echarts
 Vue.prototype.$api = api
+Vue.prototype.$store = store
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 /* eslint-disable no-new */

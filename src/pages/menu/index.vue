@@ -72,7 +72,7 @@
           this.$api.GET('/menu/getMenu').then(res=>{
             console.log(res)
             if(res.data.code==1){
-              this.tableData=res.data.data
+              this.tableData=res.data.data.tree
             }
           })
         },

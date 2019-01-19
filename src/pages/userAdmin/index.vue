@@ -1,6 +1,7 @@
 <template>
     <div class="userAdmin">
       <adminUser @showAdmin="cShowAdmin" v-if="adminBtn"></adminUser>
+      <treeMenu :data="treeData" :checkTree="checkTree" @showtree="cShowtree" v-if="treeBtn"></treeMenu>
       <div class="userAdmin-content">
           <div class="userAdmin-top">
             <span>角色名称:</span>
@@ -50,7 +51,7 @@
                 prop="power"
                 label="菜单权限" >
                 <template  slot-scope="rowsData">
-                  <span>{{rowsData.row.power?'已配置':'未配置'}}</span>
+                  <span>{{rowsData.row.treeId?'已配置':'未配置'}}</span>
                   <el-button
                     size="mini"
                     type="primary"
@@ -67,7 +68,6 @@
                     type="primary"
                     icon='el-icon-edit-outline'
                     ></el-button>
-
                   <el-button
                     size="mini"
                     type="danger" icon='el-icon-delete'
@@ -87,6 +87,7 @@
 
 <script>
   import adminUser from '@/components/dialog/adminUser.vue'
+  import treeMenu from '@/components/dialog/treeMenu.vue'
   const arrData= [
      { "value": "系统管理员", "id": "1" },
      { "value": "角色一", "id": "2" },
@@ -102,30 +103,65 @@
             state1:'',
             restaurants:arrData,
             adminBtn:false,
-            tableData: []
+            tableData: [],
+            treeData:[],
+            checkTree:[],
+            treeBtn:false,
+            Id:''
           }
       },
       components:{
-        adminUser:adminUser
+        adminUser:adminUser,
+        treeMenu:treeMenu
       },
+
       created(){
+          this.getData()
+      },
+      methods:{
+        getData(){
           this.$api.GET('/adminuser/byId').then(res=>{
             console.log(res)
             if(res.data.code==1){
               this.tableData=res.data.data.rows
             }
           })
-      },
-      methods:{
+        },
         cShowAdmin(data){
           console.log(data)
           this.adminBtn=data
         },
-        showMenu(data){
-          this.$api.GET('/menu/getMenuById',{id:data}).then(res=>{
+        cShowtree(data){
+          console.log(data)
+          if(!data){
+            this.treeBtn=false
+            return false
+          }
+          var str ="";
+          data.data.map(res=>{
+            str+=res._id
+          })
+          var formData={
+            id:this.Id,
+            treeId:str
+          }
+          console.log(formData)
+          this.$api.POST('/adminuser/uptateAdminById',formData).then(res=>{
             console.log(res)
             if(res.data.code==1){
-              // this.tableData=res.data.data
+              this.treeBtn=false
+              this.getData()
+            }
+          })
+        },
+        showMenu(data){
+          this.Id=data
+          this.$api.GET('/menu/getMenuByAdminId',{id:data}).then(res=>{
+            console.log(res)
+            if(res.data.code==1){
+              this.treeData=res.data.data.tree
+              this.checkTree=res.data.data.checkTree
+              this.treeBtn=true
             }
           })
         },
