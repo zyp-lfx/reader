@@ -1,9 +1,12 @@
 <template>
-  <div class="sys-main">
+  <div class="goods-mian">
+    <!--<leftnav></leftnav>-->
     <div class="content">
       <router-view ></router-view>
+
     </div>
   </div>
+
 </template>
 
 <script>
@@ -12,15 +15,16 @@
     name: "index",
     components:{'leftnav':leftnav}
   }
-
 </script>
 
 <style scoped lang="less">
-  .sys-main{
+  .goods-mian{
     position: relative;
-    height:100%;
+    height: calc(100% - 70px);
   }
   .content{
-    height:100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 5px;
   }
 </style>

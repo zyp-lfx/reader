@@ -46,6 +46,9 @@ html,body{
   height: 100%;
  min-width: 1920px;
 }
+.el-menu.el-menu--horizontal{
+  border-bottom: 0px!important;
+}
 .dialog{
   position: absolute;
   z-index: 99;
@@ -54,6 +57,9 @@ html,body{
   left: 0;
   width: 100%;
   height: 100%;
+}
+.el-menu{
+  border-right: none;
 }
 .clear:before,
 .clear:after {

@@ -291,8 +291,7 @@
 
 <style scoped lang="less">
   .content{
-    height: calc(100% - 120px);
-    width: calc(100% - 60px);
+    height: calc(100% - 70px);
     margin: 30px;
   }
   .userPic{

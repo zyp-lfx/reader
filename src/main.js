@@ -10,10 +10,12 @@ import api from '@/api';
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import store from './store'//引入store
+import VueUeditorWrap from 'vue-ueditor-wrap'
 Vue.prototype.$echarts = echarts
 Vue.prototype.$api = api
 Vue.prototype.$store = store
 Vue.config.productionTip = false
+Vue.component('vue-ueditor-wrap', VueUeditorWrap)
 Vue.use(ElementUI);
 /* eslint-disable no-new */
 console.log(api)

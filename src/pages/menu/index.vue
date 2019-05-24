@@ -66,6 +66,8 @@
       },
       created(){
         this.getData()
+        let matched = this.$route.matched.filter(item => item.name)
+        console.log(matched)
       },
       methods:{
         getData(){
@@ -99,12 +101,11 @@
 <style scoped lang="less">
   .menu-box{
     width: calc(100% - 40px);
-    padding: 20px;
     height: calc(100% - 40px);
+    margin: auto;
+    padding-top: 20px;
     .menu-content{
       background: #fff;
-      width: 100%;
-      height: 100%;
     }
     .el-input{
       width: 220px;

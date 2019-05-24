@@ -1,6 +1,6 @@
 <template>
-    <div class="tree-content">
-      <div class="treeTable" style="">
+    <div class="tree-content" ref="treeContent">
+      <div class="treeTable" :style="'width:'+treeWidth+'px'">
         <div class="treeTabletr">
           <div v-for="item in columns" class="box-cell">
             <div class="node-box">{{item.text}}</div>
@@ -17,7 +17,7 @@
           <!--</div>-->
 
         <!--</div>-->
-        <div v-for="(item,index) in dataress" class="table-box" >
+        <div v-for="(item,index) in dataress" class="table-box" :style="'width:'+treeWidth+'px'">
           <span @click="showChildren(index)" v-if="item.children&&item.children.length&&(item._level == 1||(item.parent&&item.parent._expanded&&item.parent._show))" :class="item._expanded?'haschildren show':'haschildren disshow'" :style="{'left':item._expanded?(item._level*20-18+'px'):(item._level*20-12+'px')}"></span>
           <div v-if="item.parent?(item.parent._expanded && item.parent._show):true" class="treeTabletr">
             <slot :row="item">
@@ -34,7 +34,7 @@
         name: "treetable",
         props:{
           data:{},
-          columns:''
+          columns:'',
         },
       computed: {
         // 格式化数据源
@@ -53,15 +53,18 @@
       },
         created(){
           console.log(this.colmuns)
+          console.log(this.treeWidth)
+
         },
         mounted(){
           console.log(this.$children)
-          console.log(this.dataress)
-
+          console.log(this.$refs.treeContent.clientWidth)
+          this.treeWidth=this.$refs.treeContent.clientWidth
         },
         data() {
           return {
             datares:[],
+            treeWidth:0,
             expandAll:false,
             tableData: [{
               date: '2016-05-02',
@@ -159,13 +162,13 @@
   .treeTable{
     display: table;
     table-layout:fixed;
-    width: 100%;
+    /*width: 100%;*/
     text-align: left;
   }
   .table-box{
     display: table;
     table-layout:fixed;
-    width: 100%;
+    /*width: 100%;*/
     text-align: left;
     position: relative;
 

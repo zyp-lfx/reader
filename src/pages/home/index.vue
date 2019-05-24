@@ -1,21 +1,33 @@
 <template>
     <div class="main">
       <tab></tab>
-      <router-view ></router-view>
+      <router-view class="routerView" ></router-view>
     </div>
 </template>
 
 <script>
-    import tab from '@/components/tab'
+  import tab from '@/components/tab'
+  import leftnav from '@/components/leftnav'
     export default {
         name: "home",
-        components:{'tab':tab}
+        components:{'tab':tab,'leftnav':leftnav}
     }
 </script>
 
 <style scoped lang="less">
-  .main{
-    height: 100%;
+  .main {
+    min-height: 100%;
     background: #eee;
+    display: flex;
+    flex-shrink:1;
   }
+  .routerView{
+    width: calc( 100% - 180px );
+    height: 100%;
+    padding-left: 180px;
+  }
+
 </style>
+
+
+

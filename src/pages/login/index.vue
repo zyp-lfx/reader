@@ -60,7 +60,6 @@
       },
       created(){
           console.log(this.$api)
-
       },
       methods:{
         login(){
@@ -68,10 +67,21 @@
           this.$api.POST('/login',this.formData).then(res=>{
             console.log(res)
             if(res.data.code==1){
+              this.getTree(res.data.data.adminId)
               this.$message.success('登录成功！')
-              this.$router.push({path: 'home'})
             }else{
               this.$message.error(res.data.msg)
+            }
+          })
+        },
+        getTree(adminId){
+          var _this =this
+          this.$api.GET('/menu/getMenuByAdminId',{id:adminId}).then(res=>{
+            if(res.data.code==1){
+              console.log(res)
+              _this.$store.dispatch('ROUTER/ASY_SET_ROUTER_MENU',res.data.data.tree)
+              this.$router.push({path: 'home'})
+              console.log(this.ROUTER_MENU)
             }
           })
         },

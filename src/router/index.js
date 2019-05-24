@@ -7,6 +7,10 @@ const System = resolve => require(['@/pages/system'], resolve)
 const userAdmin = resolve => require(['@/pages/userAdmin'], resolve)
 const user = resolve => require(['@/pages/user'], resolve)
 const menu = resolve => require(['@/pages/menu'], resolve)
+const goods = resolve => require(['@/pages/goods'], resolve)
+const goodsDetail = resolve => require(['@/pages/goodsDetail'], resolve)
+const goodsClass = resolve => require(['@/pages/goodsClass'], resolve)
+const msgInfo = resolve => require(['@/pages/msgInfo'], resolve)
 
 Vue.use(Router)
 
@@ -24,12 +28,18 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home,
+      meta:{
+        title:'首页'
+      },
       children:[
         {
           path: '/system',
           name: 'system',
           component: System,
           redirect: '/user',
+          meta:{
+            title:'系统中心'
+          },
           children: [
               {
                 path:'/userAdmin',
@@ -41,11 +51,11 @@ export default new Router({
                 name:user,
                 component:user
               },
-            {
-              path:'/menu',
-              name:menu,
-              component:menu
-            }
+              {
+                path:'/menu',
+                name:menu,
+                component:menu
+              }
             ]
         },
         {
@@ -57,6 +67,29 @@ export default new Router({
           path:'/',
           name:'admin',
           component:Admin,
+        },
+        {
+          path:'/goods',
+          name:'goods',
+          component:goods,
+          redirect: '/goodsDetial',
+          children:[
+            {
+              path:'/goodsDetial',
+              name:'goodsDetail',
+              component:goodsDetail,
+            },
+            {
+              path:'/goodsClass',
+              name:'goodsClass',
+              component:goodsClass,
+            }
+          ]
+        },
+        {
+          path:'/msgInfo',
+          name:'msgInfo',
+          component:msgInfo,
         }
       ]
     }

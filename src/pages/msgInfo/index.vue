@@ -12,15 +12,8 @@
     name: "index",
     components:{'leftnav':leftnav}
   }
-
 </script>
 
-<style scoped lang="less">
-  .sys-main{
-    position: relative;
-    height:100%;
-  }
-  .content{
-    height:100%;
-  }
+<style scoped>
+
 </style>

@@ -52,7 +52,7 @@
             sortable
           >
             <template  slot-scope="rowData">
-              <span>{{rowData.row.adminId?'rowData.adminName':'未配置'}}</span>
+              <span>{{rowData.row.adminId?rowData.row.adminName:'未配置'}}</span>
               <el-button
                 size="mini"
                 type="primary"
