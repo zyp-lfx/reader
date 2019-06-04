@@ -13,9 +13,10 @@
         editorContent: '',
       }
     },
-    props: ['catchData'],    //接收父组件的方法
+    props: ['catchData','content'],    //接收父组件的方法
     mounted() {
-      var editor = new E(this.$refs.editorElem)        //创建富文本实例
+      console.log(this.content)
+      var editor = new E(this.$refs.editorElem)
       editor.customConfig.onchange = (html) => {
         this.editorContent = html
         console.log(this.catchData)
@@ -25,12 +26,13 @@
       editor.customConfig.uploadFileName = 'file'
 
       editor.customConfig.menus = [          //菜单配置
-        'head',
         'list',  // 列表
+        'head',
         'justify',  // 对齐方式
         'bold',
         'fontSize',  // 字号
         'italic',
+        'asdas',
         'underline',
         'image',  // 插入图片
         'foreColor',  // 文字颜色
@@ -86,6 +88,8 @@
 
 
       editor.create()
+      editor.txt.html(this.content)//创建富文本实例
+
     }
   }
 </script>

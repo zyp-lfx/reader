@@ -1,21 +1,21 @@
 <template>
   <div class="main-goods">
-      <goodsDetailModel v-if="showGoodBtn"  @closeGoods="closeGoods"></goodsDetailModel>
+      <goodsDetailModel v-if="showGoodBtn" :editData="goodData"   @closeGoods="closeGoods"></goodsDetailModel>
     <div class="mian-header">
       <span>商品名称:</span>
       <el-input    clearable placeholder="请输入内容"></el-input>
       <el-button type="primary" icon="el-icon-search">搜索</el-button>
       <el-button class="right" type="primary" icon="el-icon-plus" @click="showGoods()">新增</el-button>
     </div>
-    <ul class="goods-ul">
-      <li>
-        <img src="@/assets/logo.png" alt=""  >
+    <ul class="goods-ul clear">
+      <li v-for="item in baseData" >
+        <img :src="'http://localhost:3000/upload/'+item.imgList.split(',')[0]" alt=""  @click="showGoods(item)">
         <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
+          <span class="goodsTitle">{{item.name}}</span>
+          <span class="goodsMoney">¥{{item.price}}</span>
         </p>
         <p >
-          <span class="kuc">库存 100</span>
+          <span class="kuc">库存 {{item.balance}}</span>
           <span class="goodsMoney">
                 <!--<i class="el-icon-upload2"></i>-->
                 <i class="el-icon-download" title="下架"></i>
@@ -23,206 +23,12 @@
               </span>
         </p>
       </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
-      <li>
-        <img src="@/assets/logo.png" alt="">
-        <p class="goods-info">
-          <span class="goodsTitle">普通商品</span>
-          <span class="goodsMoney">¥110</span>
-        </p>
-        <p >
-          <span class="kuc">库存 100</span>
-          <span class="goodsMoney">
-                <!--<i class="el-icon-upload2"></i>-->
-                <i class="el-icon-download" title="下架"></i>
-                <i class="el-icon-delete" title="移除"></i>
-              </span>
-        </p>
-      </li>
+
     </ul>
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="1000">
+      :total="total">
     </el-pagination>
   </div>
 </template>
@@ -236,12 +42,23 @@
         },
       data(){
           return{
-            showGoodBtn:false
+            showGoodBtn:false,
+            baseData:[],
+            goodData:'',
+            total:0,
           }
       },
+      created(){
+        this.$api.POST('/goods/getGoodsList',{}).then(res=>{
+          this.baseData=res.data.data.rows
+          this.total=res.data.data.total
+          console.log(this.baseData)
+        })
+          },
       methods:{
-        showGoods(){
+        showGoods(data){
           console.log(1)
+          this.goodData=data
           this.showGoodBtn=true
         },
         closeGoods(){
@@ -265,8 +82,7 @@
   }
 
   .goods-ul{
-    height: calc(100% - 200px);
-    padding: 0 10px;
+    padding: 0 10px 50px;
   }
   .goods-ul li{
     height: 300px;

@@ -20,7 +20,7 @@
 <style scoped lang="less">
   .goods-mian{
     position: relative;
-    height: calc(100% - 70px);
+    min-height: 100%;
   }
   .content{
     height: 100%;

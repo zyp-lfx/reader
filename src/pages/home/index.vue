@@ -16,10 +16,8 @@
 
 <style scoped lang="less">
   .main {
-    min-height: 100%;
+    height: 100%;
     background: #eee;
-    display: flex;
-    flex-shrink:1;
   }
   .routerView{
     width: calc( 100% - 180px );

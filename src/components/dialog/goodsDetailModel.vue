@@ -43,7 +43,7 @@
           <p class="attrList">颜色:红，尺寸:175</p>
         </el-form-item>
         <el-form-item label="商品简介">
-            <wangeditor :catchData="catchData"></wangeditor>
+            <wangeditor :content="formData.goodsInfo" :catchData="catchData"></wangeditor>
         </el-form-item>
       </el-form>
       <div class="dialog-footer">
@@ -56,8 +56,12 @@
 
 <script>
     import wangeditor from '../plugin/wangeditor'
+    const uploadUrl='http://localhost:3000/upload/'
     export default {
         name: "goodsDetailModel",
+        props:{
+          editData:""
+        },
         data() {
           return {
             dialogImageUrl: '',
@@ -80,6 +84,15 @@
         },
         components: {
           wangeditor
+        },
+        created(){
+          console.log(uploadUrl)
+          this.formData=Object.assign({},this.editData)
+          this.formData.imgList=this.formData.imgList.split(',')
+          this.formData.imgList.map(item=>{
+            this.fileList.push({name:item,url:uploadUrl+item})
+          })
+          console.log(this.formData)
         },
         methods: {
           closeDialog(){
@@ -114,7 +127,7 @@
             }
           },
           submit(){
-            this.formData.imgList=this.formData.imgList.join(' ')
+            this.formData.imgList=this.formData.imgList.join(',')
             this.$api.POST('/goods/addGoods',this.formData).then(res=>{
               if(res.data.code==1){
                 this.closeDialog()
@@ -139,7 +152,7 @@
       width: 100px!important;
     }
     .form-box{
-      max-height: 660px;
+      max-height: 780px;
       margin-bottom: 10px;
       overflow: auto;
       border-bottom: 1px solid #d8d8d8;

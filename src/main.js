@@ -13,6 +13,7 @@ import store from './store'//引入store
 import VueUeditorWrap from 'vue-ueditor-wrap'
 Vue.prototype.$echarts = echarts
 Vue.prototype.$api = api
+Vue.prototype.$api = api
 Vue.prototype.$store = store
 Vue.config.productionTip = false
 Vue.component('vue-ueditor-wrap', VueUeditorWrap)
@@ -27,6 +28,7 @@ const requireComponent = require.context(
   // 匹配基础组件文件名的正则表达式
   /[A-Z]\w+\.(vue|js)$/
 )
+
 
 requireComponent.keys().forEach(fileName => {
   // 获取组件配置

@@ -29,32 +29,33 @@
       </div>
       <div class="chartInfo shadow">
         <h3>图形报表</h3>
-        <div id="barChart" class="charts" ></div>
-        <div id="pieChart" class="charts" ></div>
+        <div id="barChart" class="barcharts" ></div>
       </div>
       <div class="tableInfo shadow">
         <h3>表格信息</h3>
-        <el-table
-          :data="tableData3"
-          class="tablemsg"
-          max-height="500"
-          border
-          >
-          <el-table-column
-            prop="date"
-            label="日期"
-            width="130">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名"
-            width="130">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地址">
-          </el-table-column>
-        </el-table>
+        <div id="pieChart" class="charts" ></div>
+
+        <!--<el-table-->
+          <!--:data="tableData3"-->
+          <!--class="tablemsg"-->
+          <!--max-height="500"-->
+          <!--border-->
+          <!--&gt;-->
+          <!--<el-table-column-->
+            <!--prop="date"-->
+            <!--label="日期"-->
+            <!--width="130">-->
+          <!--</el-table-column>-->
+          <!--<el-table-column-->
+            <!--prop="name"-->
+            <!--label="姓名"-->
+            <!--width="130">-->
+          <!--</el-table-column>-->
+          <!--<el-table-column-->
+            <!--prop="address"-->
+            <!--label="地址">-->
+          <!--</el-table-column>-->
+        <!--</el-table>-->
       </div>
     </div>
     <div class="clear">
@@ -308,13 +309,15 @@
     background: #fff;
     float: left;
   }
-  .charts{
-    width: 480px;
+  .barcharts{
+    width: 780px;
     height: 360px;
     display:inline-block;
   }
-  .charts:nth-of-type(2){
+  .charts{
     width: 420px;
+    height: 360px;
+    display:inline-block;
   }
   .info-num{
     padding-top: 40px;
@@ -380,14 +383,14 @@
     box-shadow: 0 0 2px 2px #148de1;
   }
   .chartInfo{
-    width: 910px;
+    width: 810px;
     height:460px ;
     margin: 0 20px;
     background: #fff;
     float: left;
   }
   .tableInfo{
-    width: 520px;
+    width: 440px;
     height:460px ;
     background: #fff;
     float: left;
@@ -398,7 +401,7 @@
     }
   }
   .msgInfo{
-    width: 915px;
+    width: 825px;
     height: 340px;
     margin-right: 20px;
     margin-top: 20px;

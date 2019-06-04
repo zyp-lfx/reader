@@ -11,6 +11,7 @@ const goods = resolve => require(['@/pages/goods'], resolve)
 const goodsDetail = resolve => require(['@/pages/goodsDetail'], resolve)
 const goodsClass = resolve => require(['@/pages/goodsClass'], resolve)
 const msgInfo = resolve => require(['@/pages/msgInfo'], resolve)
+const attrinfo = resolve => require(['@/pages/attrinfo'], resolve)
 
 Vue.use(Router)
 
@@ -83,6 +84,11 @@ export default new Router({
               path:'/goodsClass',
               name:'goodsClass',
               component:goodsClass,
+            },
+            {
+              path:'/attrinfo',
+              name:'attrinfo',
+              component:attrinfo,
             }
           ]
         },
