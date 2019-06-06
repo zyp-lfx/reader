@@ -17,7 +17,7 @@
               </el-form-item>
             </el-form>
             <div class="attr-child">
-              <span v-for="(item,index) in attrlist" :key="index">{{item}}<i class="el-icon-error" @click="delAttr(index)"></i></span>
+              <span v-for="(item,index) in attrlist" :key="index">{{item.name}}<i class="el-icon-error" @click="delAttr(index)"></i></span>
             </div>
         </div>
         <div class="dialog-footer">
@@ -39,13 +39,31 @@
             }
         },
       methods:{
+        closeDialog(){
+          this.$emit('closeDialog',false)
+        },
         sure(){
           if(!this.attrClass){
             this.$message.error('规格类别不能为空')
             return false
           }
-          this.attrlist.push(this.attrClass)
+          this.attrlist.push({name:this.attrClass,attrName:this.attrName})
           this.attrClass=''
+        },
+        submit(){
+          console.log({
+            name:this.attrName,
+            attrList:this.attrlist
+          })
+          this.$api.POSTARR('/attr/add',{
+            name:this.attrName,
+            attrList:this.attrlist
+          }).then(res=>{
+              if(res.data.code==1){
+                this.closeDialog()
+                this.$message.success('新增成功！')
+              }
+          })
         },
         delAttr(idx){
           console.log(idx)

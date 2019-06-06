@@ -1,6 +1,6 @@
 <template>
   <div class="attr">
-    <attrModel></attrModel>
+    <attrModel v-if="showDialogBtn"   @closeDialog="closeDialog"></attrModel>
     <div class="menu-content">
       <div class="menu-top">
         <span>规格名称:</span>
@@ -11,33 +11,53 @@
         ></el-autocomplete>
 
         <el-button type="primary" icon="el-icon-search">搜索</el-button>
-        <el-button class="right" type="primary"  icon="el-icon-plus" >新增</el-button>
+        <el-button class="right" type="primary"  icon="el-icon-plus" @click="showDialog">新增</el-button>
       </div>
       <template>
         <el-table
           :data="tableData"
+          class="attr-table"
           style="width: 100%"
           :default-sort = "{prop: 'date', order: 'descending'}"
         >
           <el-table-column
-            prop="attrName"
+            prop="name"
             label="规格名称"
             sortable
             width="180">
           </el-table-column>
           <el-table-column
-            prop="attrList"
             label="规格类别"
             sortable
            >
+            <template slot-scope="scope">
+              <span class="attrList" v-for="item in scope.row.children">{{item.name}}</span>
+            </template>
           </el-table-column>
-
+          <el-table-column
+            label="操作"
+            width="180"
+          >
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="primary"
+                icon='el-icon-edit-outline'
+              ></el-button>
+            </template>
+          </el-table-column>
         </el-table>
+      </template>
+      <template>
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="1000">
+        </el-pagination>
       </template>
     </div>
   </div>
 </template>
-
 <script>
   import  attrModel from '@/components/dialog/attrModel'
     export default {
@@ -47,29 +67,30 @@
       },
       data() {
         return {
-          tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }]
+          showDialogBtn:false,
+          tableData:[]
         }
       },
+      created(){
+          this.$api.GET('/attr/getAttr',{}).then(res=>{
+            this.tableData=res.data.data
+            console.log(this.tableData)
+          })
+      },
+      methods:{
+        showDialog(){
+          this.showDialogBtn=true
+        },
+        closeDialog(){
+          this.showDialogBtn=false
+        }
+      }
     }
 </script>
-
-<style scoped lang="less">
+ i<style scoped lang="less">
+  .attr-table{
+    padding: 20px;
+  }
   .menu-content{
     background: #fff;
   }
@@ -91,6 +112,11 @@
     .right{
       float: right;
     }
+  }
+  .attrList{
+    padding: 5px;
+    display: inline-block;
+    font-size: 14px;
   }
 
 </style>

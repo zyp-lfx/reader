@@ -19,7 +19,17 @@ const GET =(cmd,data)=>{
 }
 const POST =(cmd,data)=>{
   var p = new Promise((resolve, reject) => {
-    axios.post(BASE_URL+cmd,Qs.stringify(data)).then(res=>{
+    axios.post(BASE_URL+cmd,data).then(res=>{
+      resolve(res)
+    }).catch(error=>{
+      reject(error)
+    })
+  })
+  return p;
+}
+const POSTARR = (cmd,data)=>{
+  var p = new Promise((resolve, reject) => {
+    axios.post(BASE_URL+cmd,data).then(res=>{
       resolve(res)
     }).catch(error=>{
       reject(error)
@@ -29,5 +39,6 @@ const POST =(cmd,data)=>{
 }
 export default({
   GET:GET,
-  POST:POST
+  POST:POST,
+  POSTARR:POSTARR
 });

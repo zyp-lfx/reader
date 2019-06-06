@@ -1,5 +1,6 @@
 <template>
   <div class="dialog-mian">
+    <skuBox></skuBox>
     <div class="dialog-box">
       <div class="title">新增商品
         <i class="el-icon-close" @click="closeDialog()"></i>
@@ -57,6 +58,7 @@
 <script>
     import wangeditor from '../plugin/wangeditor'
     const uploadUrl='http://localhost:3000/upload/'
+    import  skuBox from './skuDialog'
     export default {
         name: "goodsDetailModel",
         props:{
@@ -83,15 +85,21 @@
           };
         },
         components: {
-          wangeditor
+          wangeditor,
+          skuBox
         },
         created(){
           console.log(uploadUrl)
           this.formData=Object.assign({},this.editData)
-          this.formData.imgList=this.formData.imgList.split(',')
-          this.formData.imgList.map(item=>{
-            this.fileList.push({name:item,url:uploadUrl+item})
-          })
+          if(this.formData.imgList){
+            this.formData.imgList=this.formData.imgList.split(',')
+            this.formData.imgList.map(item=>{
+              this.fileList.push({name:item,url:uploadUrl+item})
+            })
+          }else{
+            this.formData.imgList=[]
+          }
+
           console.log(this.formData)
         },
         methods: {
