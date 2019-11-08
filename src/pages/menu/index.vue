@@ -104,6 +104,7 @@
     height: calc(100% - 40px);
     margin: auto;
     padding-top: 20px;
+    background: #fff;
     .menu-content{
       background: #fff;
     }

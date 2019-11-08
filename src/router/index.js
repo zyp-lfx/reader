@@ -45,17 +45,27 @@ export default new Router({
               {
                 path:'/userAdmin',
                 name:userAdmin,
-                component:userAdmin
+                component:userAdmin,
+                meta:{
+                  title:'用戶管理'
+                },
               },
               {
                 path:'/user',
                 name:user,
-                component:user
+                component:user,
+                meta:{
+                  title:'用戶管理'
+                },
               },
               {
                 path:'/menu',
                 name:menu,
-                component:menu
+                component:menu,
+                meta:{
+                  title:'菜单管理'
+                },
+
               }
             ]
         },

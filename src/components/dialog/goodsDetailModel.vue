@@ -66,8 +66,7 @@
         },
         data() {
           return {
-            dialogImageUrl: '',
-            dialogVisible: false,
+
             formData:{
               name:'',
               imgList:[],
@@ -77,6 +76,8 @@
               goodsAttrId:'',
               goodsInfo:''
             },
+            dialogImageUrl: '',
+            dialogVisible: false,
             fileList:[],
             uploadBtn:true,
             delivery:true,

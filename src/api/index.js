@@ -39,6 +39,6 @@ const POSTARR = (cmd,data)=>{
 }
 export default({
   GET:GET,
-  POST:POST,
+    POST:POST,
   POSTARR:POSTARR
 });
