@@ -100,10 +100,9 @@
 
 <style scoped lang="less">
   .menu-box{
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
-    margin: auto;
-    padding-top: 20px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     background: #fff;
     .menu-content{
       background: #fff;

@@ -84,11 +84,17 @@ export default new Router({
           name:'goods',
           component:goods,
           redirect: '/goodsDetial',
+          meta:{
+            title:'商品中心'
+          },
           children:[
             {
               path:'/goodsDetial',
               name:'goodsDetail',
               component:goodsDetail,
+              meta:{
+                title:'商品管理'
+              },
             },
             {
               path:'/goodsClass',

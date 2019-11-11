@@ -30,7 +30,7 @@
     flex: 1;
   }
   .routerView{
-    height: calc( 100% - 51px)
+    height: calc( 100% - 51px);
   }
 </style>
 
