@@ -7,16 +7,7 @@
           </div>
         </div>
       </div>
-      <div>
-        <!--<div v-for="item in tableData" class="table-box" >-->
-          <!--<span @click="showChildren(item)" v-if="item.children&&item.children.length&&(item.lev == 1||(item.parent&&item.parent.show))" :class="item.show?'haschildren show':'haschildren disshow'" :style="{'left':item.show?(item.lev*20-18+'px'):(item.lev*20-12+'px')}"></span>-->
-          <!--<div  class="treeTabletr">-->
-            <!--<slot :row="item">-->
-            <!--</slot>-->
-
-          <!--</div>-->
-
-        <!--</div>-->
+      <div v-if="dataress&&dataress.length">
         <div v-for="(item,index) in dataress" class="table-box" :style="'width:'+treeWidth+'px'">
           <span @click="showChildren(index)" v-if="item.children&&item.children.length&&(item._level == 1||(item.parent&&item.parent._expanded&&item.parent._show))" :class="item._expanded?'haschildren show':'haschildren disshow'" :style="{'left':item._expanded?(item._level*20-18+'px'):(item._level*20-12+'px')}"></span>
           <div v-if="item.parent?(item.parent._expanded && item.parent._show):true" class="treeTabletr">
@@ -25,6 +16,7 @@
           </div>
         </div>
       </div>
+      <div v-else>暂无数据</div>
     </div>
 </template>
 

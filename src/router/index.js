@@ -12,6 +12,7 @@ const goodsDetail = resolve => require(['@/pages/goodsDetail'], resolve)
 const goodsClass = resolve => require(['@/pages/goodsClass'], resolve)
 const msgInfo = resolve => require(['@/pages/msgInfo'], resolve)
 const attrinfo = resolve => require(['@/pages/attrinfo'], resolve)
+const goodsAttr = resolve => require(['@/pages/goodsAttr'], resolve)
 
 Vue.use(Router)
 
@@ -100,6 +101,17 @@ export default new Router({
               path:'/goodsClass',
               name:'goodsClass',
               component:goodsClass,
+              meta:{
+                title:'商品分类'
+              },
+            },
+            {
+              path:'/goodsAttr',
+              name:'goodsAttr',
+              component:goodsAttr,
+              meta:{
+                title:'商品类型'
+              }
             },
             {
               path:'/attrinfo',
@@ -108,6 +120,7 @@ export default new Router({
             }
           ]
         },
+
         {
           path:'/msgInfo',
           name:'msgInfo',

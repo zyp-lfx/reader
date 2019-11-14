@@ -26,6 +26,9 @@
     background: #eee;
     display: flex;
   }
+  .left-home{
+    flex-shrink: 0;
+  }
   .right-home{
     flex: 1;
   }
